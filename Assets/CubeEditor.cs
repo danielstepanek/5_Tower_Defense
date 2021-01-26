@@ -7,31 +7,38 @@ using UnityEngine;
 [RequireComponent(typeof(Waypoint))]
 public class CubeEditor : MonoBehaviour
 {
-	Waypoint waypoint;
-    void Awake()
 
+    Waypoint waypoint;
+
+    private void Awake()
     {
-		waypoint = GetComponent<Waypoint>();
+        waypoint = GetComponent<Waypoint>();
     }
 
-    // Update is called once per frame
     void Update()
-	{
-		SnapToGrid();
-		UpdateLabel();
-	}
+    {
+        SnapToGrid();
+        UpdateLabel();
+    }
 
-	private void SnapToGrid()
-	{
-		int gridSize = waypoint.GetGridSize();
-		transform.position = new Vector3(waypoint.GetGridPos().x * gridSize, 0f, waypoint.GetGridPos().y * gridSize);
-	}
+    private void SnapToGrid()
+    {
+        int gridSize = waypoint.GetGridSize();
+        transform.position = new Vector3(
+            waypoint.GetGridPos().x * gridSize,
+            0f,
+            waypoint.GetGridPos().y * gridSize
+        );
+    }
 
-	private void UpdateLabel()
-	{
-		TextMesh textMesh = GetComponentInChildren<TextMesh>();
-		string labelText = waypoint.GetGridPos().x + "," + waypoint.GetGridPos().y;
-		gameObject.name = labelText;
-		textMesh.text = labelText;
-	}
+    private void UpdateLabel()
+    {
+        TextMesh textMesh = GetComponentInChildren<TextMesh>();
+        string labelText =
+            waypoint.GetGridPos().x +
+            "," +
+            waypoint.GetGridPos().y;
+        textMesh.text = labelText;
+        gameObject.name = labelText;
+    }
 }
