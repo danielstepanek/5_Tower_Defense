@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
     // Use this for initialization
     void Start()
     {
@@ -16,13 +15,14 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
-    IEnumerator FollowPath(List<Waypoint> path)
+
+	IEnumerator FollowPath(List<Waypoint> path)
     {
         print("Starting patrol...");
         foreach (Waypoint waypoint in path)
         {
             transform.position = waypoint.transform.position;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
         print("Ending patrol");
     }
