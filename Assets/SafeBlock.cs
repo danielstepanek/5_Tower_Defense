@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SafeBlock : MonoBehaviour
 {
-    [SerializeField] bool hasTower = false;
-    [SerializeField] Vector3 towerOffset;
-    [SerializeField] Tower tower;
+    public bool hasTower = false;
+
+
     void Start()
     {
 
@@ -17,17 +17,12 @@ public class SafeBlock : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                print("Clicked " + transform.position.x + " " + transform.position.z);
-                SpawnTower();
-                hasTower = true;
+                FindObjectOfType<TowerFactory>().AddTower(this);
+
             }
         }
     }
-    void SpawnTower()
-    {
-        Instantiate(tower, transform.position + towerOffset, Quaternion.identity);
-        hasTower = true;
-    }
+
     // Update is called once per frame
     void Update()
     {
