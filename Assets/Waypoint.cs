@@ -6,6 +6,7 @@ public class Waypoint : MonoBehaviour
 {
     // public ok here as is a data class
     public bool isExplored = false;
+    public bool isPlaceable = true;
     public Waypoint exploredFrom;
 
     Vector2Int gridPos;

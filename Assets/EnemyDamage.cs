@@ -6,6 +6,9 @@ public class EnemyDamage : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] int hitPoints = 10;
+    [SerializeField] ParticleSystem hitParticle;
+    [SerializeField] ParticleSystem deathParticle;
+
 
     void Start()
     {
@@ -15,16 +18,23 @@ public class EnemyDamage : MonoBehaviour
 	// Update is called once per frame
 	private void OnParticleCollision(GameObject other)
 	{
-		print("I'm hit!");
         hitPoints--;
+        hitParticle.Play();
 
 	}
 	void Update()
     {
         if (hitPoints <= 0)
 		{
-			Destroy(gameObject);
-
+            TriggerDeath();
 		}
+    }
+    void TriggerDeath()
+    {
+
+        var vfx = Instantiate(deathParticle, transform.position, Quaternion.identity);
+        vfx.Play();
+        Destroy(gameObject);
+
     }
 }

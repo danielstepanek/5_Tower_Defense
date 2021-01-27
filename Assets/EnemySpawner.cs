@@ -16,9 +16,9 @@ public class EnemySpawner : MonoBehaviour
 	{
         while (numOfEnemies > 0)
 		{
-            Instantiate(enemyPreFab, gameObject.transform.position, Quaternion.identity);
+            Instantiate(enemyPreFab, transform.position, Quaternion.identity);
             numOfEnemies--;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(secondsBetweenSpawns);
         }
         
 	}
