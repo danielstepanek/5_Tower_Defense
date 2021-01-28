@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d31440c09ab4041b71c63270b015e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalParticle: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0, type: 3}
+  goalFX: {fileID: 8300000, guid: 470671f8c236eba4eaa94c2962a448bc, type: 3}
 --- !u!114 &281500546538227299
 MonoBehaviour:
   m_ObjectHideFlags: 0

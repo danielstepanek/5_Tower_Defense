@@ -9,6 +9,9 @@ public class Tower : MonoBehaviour
     [SerializeField] ParticleSystem projectileParticle;
     [SerializeField] Vector3 targetingOffset;
 
+    public SafeBlock baseSafeblock;
+
+
     Transform enemyTarget;
     void Start()
     {

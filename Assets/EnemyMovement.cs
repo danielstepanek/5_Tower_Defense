@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    // Use this for initialization
+    [SerializeField] ParticleSystem goalParticle;
+    [SerializeField] AudioClip goalFX;
+
     void Start()
     {
         Pathfinder pathfinder = FindObjectOfType<Pathfinder>();
@@ -23,5 +25,19 @@ public class EnemyMovement : MonoBehaviour
             transform.position = waypoint.transform.position;
             yield return new WaitForSeconds(1f);
         }
+        TriggerGoal();
+
+    }
+    void TriggerGoal()
+    {
+        var vfx = Instantiate(goalParticle, transform.position, Quaternion.identity);
+
+        vfx.Play();
+        var vfxAudio = vfx.GetComponent(typeof(AudioSource)) as AudioSource;
+        vfxAudio.PlayOneShot(goalFX);
+
+        Destroy(vfx.gameObject, 3.5f);
+
+        Destroy(gameObject, 2f);
     }
 }

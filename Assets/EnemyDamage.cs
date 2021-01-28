@@ -35,9 +35,12 @@ public class EnemyDamage : MonoBehaviour
     void TriggerDeath()
     {
         var vfx = Instantiate(deathParticle, transform.position, Quaternion.identity);
+
         vfx.Play();
         var vfxAudio = vfx.GetComponent(typeof(AudioSource)) as AudioSource;
 		vfxAudio.PlayOneShot(deathSFX);
+
+        Destroy(vfx.gameObject, .75f);
 
         Destroy(gameObject);
     }
