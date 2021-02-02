@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] ParticleSystem goalParticle;
     [SerializeField] AudioClip goalFX;
+    [SerializeField] Vector3 fxOffset;
 
     void Start()
     {
@@ -23,21 +24,20 @@ public class EnemyMovement : MonoBehaviour
         foreach (Waypoint waypoint in path)
         {
             transform.position = waypoint.transform.position;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.2f);
         }
         TriggerGoal();
 
     }
     void TriggerGoal()
     {
-        var vfx = Instantiate(goalParticle, transform.position, Quaternion.identity);
-
+        var vfx = Instantiate(goalParticle, transform.position + fxOffset, Quaternion.identity);
         vfx.Play();
         var vfxAudio = vfx.GetComponent(typeof(AudioSource)) as AudioSource;
         vfxAudio.PlayOneShot(goalFX);
+        
+        Destroy(vfx.gameObject, 1f);
 
-        Destroy(vfx.gameObject, 3.5f);
-
-        Destroy(gameObject, 2f);
+        Destroy(gameObject);
     }
 }
